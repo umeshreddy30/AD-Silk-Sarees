@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { openWhatsAppPrefill } from '../../utils/whatsapp'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -13,13 +12,6 @@ export default function LoginPage() {
     setError('')
     try {
       const loggedInUser = await login(email, password)
-      const businessNumber = import.meta.env.VITE_WHATSAPP_BUSINESS_NUMBER
-      if (businessNumber) {
-        openWhatsAppPrefill({
-          phone: businessNumber,
-          message: 'Hello AD Silk Sarees, I have just logged into your website.',
-        })
-      }
       navigate(loggedInUser?.role === 'admin' ? '/admin' : '/dashboard')
     } catch (err) {
       setError(err.response?.data?.detail || 'Login failed')
