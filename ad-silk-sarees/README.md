@@ -25,9 +25,3 @@ uvicorn app.main:app --reload
 
 
 
-## Environment Variables (client/.env)
-
-```env
-VITE_API_BASE_URL=http://localhost:8000/api
-VITE_RAZORPAY_KEY_ID=
-```
