@@ -1,4 +1,5 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
+from typing import List
 
 
 class Settings(BaseSettings):
@@ -17,6 +18,7 @@ class Settings(BaseSettings):
     cloudinary_api_secret: str = ""
     razorpay_key_id: str = ""
     razorpay_key_secret: str = ""
+    cors_origins: List[str] = ["*"]
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
